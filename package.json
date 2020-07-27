@@ -1,0 +1,21 @@
+{
+  "name": "swrv-example",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint --ext .js,.ts,.vue .",
+    "fix": "eslint --fix .js,.ts,.vue ."
+  },
+  "dependencies": {
+    "vue": "^3.0.0-rc.1"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.0.0-rc.1",
+    "vite": "^1.0.0-rc.1",
+    "eslint": "^7.5.0",
+    "eslint-config-ushironoko-vue": "^1.2.0",
+    "prettier": "^2.0.5",
+    "typescript": "^3.9.7"
+  }
+}
