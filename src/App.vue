@@ -24,9 +24,7 @@ export default defineComponent({
         <PokemonView />
       </template>
       <template #fallback>
-        <div>
-          <img src="./assets/hqdefault.jpg" />
-        </div>
+        <img src="./assets/hqdefault.jpg" />
       </template>
     </Suspense>
     <button @click="nextPokemon">next</button>
