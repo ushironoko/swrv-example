@@ -1,7 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useRequest } from '../composables/fetch'
-import { useRequestData } from '../composables/pokedex'
+import { useRequest, useRequestData } from '../composables/fetch'
 
 export default defineComponent({
   name: 'App',
@@ -22,8 +21,6 @@ export default defineComponent({
     <div v-if="!isValidating && data">
       <img :src="data.data.sprites.front_default" />
     </div>
-    <div v-if="error">
-      {{ error }}
-    </div>
+    <div v-if="error">{{ error }}</div>
   </div>
 </template>

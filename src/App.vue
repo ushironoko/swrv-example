@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import PokemonView from './components/PokemonView.vue'
-import { useRequestData } from './composables/pokedex'
+import { useRequestData } from './composables/fetch'
 
 export default defineComponent({
   name: 'App',
