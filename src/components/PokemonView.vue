@@ -21,7 +21,7 @@ export default defineComponent({
   <div>
     <img
       :src="
-        data?.data?.sprites?.front_default ??
+        data?.data?.sprites?.front_default ||
         'https://pbs.twimg.com/profile_images/1202512135038701568/5tzYwOxg_400x400.jpg'
       "
     />
