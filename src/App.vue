@@ -1,34 +1,17 @@
 <script lang="ts">
-import { AxiosRequestConfig } from 'axios'
-import { defineComponent, computed, ref } from 'vue'
-import { useRequest } from './composables/fetch'
+import { defineComponent } from 'vue'
+import PokemonView from './components/PokemonView.vue'
+import { useRequestData } from './composables/pokedex'
 
 export default defineComponent({
   name: 'App',
+  components: {
+    PokemonView,
+  },
   setup() {
-    let name = ref('')
-    let data = ref()
-    let error = ref()
-
-    function getPokeData() {
-      if (!name.value) return
-      const request = computed(() => {
-        return {
-          method: 'get',
-          url: `https://pokeapi.co/api/v2/pokemon/${name.value}`,
-        } as AxiosRequestConfig
-      })
-
-      const result = useRequest(request)
-      data.value = result.data
-      error.value = result.error
-    }
-
+    const { nextPokemon } = useRequestData()
     return {
-      name,
-      getPokeData,
-      data,
-      error,
+      nextPokemon,
     }
   },
 })
@@ -36,14 +19,16 @@ export default defineComponent({
 
 <template>
   <div>
-    <input v-model="name" type="text" />
-    <button @click="getPokeData">Get!</button>
-    <div v-if="data">
-      {{ data.data.sprites.front_default }}
-    </div>
-    <div v-if="error">
-      {{ error }}
-    </div>
-    <div v-if="!data && !error">Loading...</div>
+    <Suspense>
+      <template #default>
+        <PokemonView />
+      </template>
+      <template #fallback>
+        <div>
+          <img src="./assets/hqdefault.jpg" />
+        </div>
+      </template>
+    </Suspense>
+    <button @click="nextPokemon">next</button>
   </div>
 </template>

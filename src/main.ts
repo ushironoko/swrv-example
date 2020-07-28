@@ -1,5 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import './index.css'
+import { requestSymbol, useRequestConfig } from './composables/pokedex'
 
-createApp(App).mount('#app')
+const app = createApp(App)
+app.provide(requestSymbol, useRequestConfig())
+
+app.mount('#app')
