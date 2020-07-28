@@ -19,9 +19,8 @@ type RequestDataKey = ReturnType<typeof useRequestConfig>
 export const requestSymbol: InjectionKey<RequestDataKey> = Symbol()
 
 const id = ref(1)
-const nextPokemon = () => {
-  id.value++
-}
+const nextPokemon = () => id.value++
+const prevPokemon = () => id.value--
 
 export const useRequestConfig = () => {
   return computed(() => {
@@ -41,5 +40,6 @@ export function useRequestData() {
     reqConf,
     id: id,
     nextPokemon,
+    prevPokemon,
   }
 }

@@ -9,9 +9,10 @@ export default defineComponent({
     PokemonView,
   },
   setup() {
-    const { nextPokemon } = useRequestData()
+    const { nextPokemon, prevPokemon } = useRequestData()
     return {
       nextPokemon,
+      prevPokemon,
     }
   },
 })
@@ -27,6 +28,7 @@ export default defineComponent({
         <img src="./assets/hqdefault.jpg" />
       </template>
     </Suspense>
+    <button @click="prevPokemon">prev</button>
     <button @click="nextPokemon">next</button>
   </div>
 </template>
