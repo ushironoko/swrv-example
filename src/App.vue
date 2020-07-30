@@ -20,14 +20,7 @@ export default defineComponent({
 
 <template>
   <div>
-    <Suspense>
-      <template #default>
-        <PokemonView />
-      </template>
-      <template #fallback>
-        Loading...
-      </template>
-    </Suspense>
+    <PokemonView />
     <button @click="prevPokemon">prev</button>
     <button @click="nextPokemon">next</button>
   </div>

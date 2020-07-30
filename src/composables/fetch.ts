@@ -4,11 +4,11 @@ import { Ref, InjectionKey, ref, computed, inject } from 'vue'
 
 export type RequestKey = (() => AxiosRequestConfig) | AxiosRequestConfig
 
-export async function useRequest<Data = unknown, Error = unknown>(
+export function useRequest<Data = unknown, Error = unknown>(
   request: Ref<RequestKey>,
   config?: IConfig,
 ) {
-  return await useSWRV<AxiosResponse<Data>, AxiosError<Error>>(
+  return useSWRV<AxiosResponse<Data>, AxiosError<Error>>(
     () => JSON.stringify(request.value),
     (key) => axios(JSON.parse(key)),
     config,

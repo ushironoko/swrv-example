@@ -5,9 +5,9 @@ import { PokemonData } from '../composables/pokedex'
 
 export default defineComponent({
   name: 'PokemonView',
-  async setup() {
+  setup() {
     const { reqConf } = useRequestData()
-    const { data, error, isValidating } = await useRequest<PokemonData>(reqConf)
+    const { data, error, isValidating } = useRequest<PokemonData>(reqConf)
 
     return {
       data,
