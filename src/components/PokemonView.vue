@@ -4,7 +4,7 @@ import { useRequest, useRequestData } from '../composables/fetch'
 import { PokemonData } from '../composables/pokedex'
 
 export default defineComponent({
-  name: 'App',
+  name: 'PokemonView',
   async setup() {
     const { reqConf } = useRequestData()
     const { data, error } = await useRequest<PokemonData>(reqConf)
@@ -19,12 +19,7 @@ export default defineComponent({
 
 <template>
   <div>
-    <img
-      :src="
-        data?.data?.sprites?.front_default ||
-        'https://pbs.twimg.com/profile_images/1202512135038701568/5tzYwOxg_400x400.jpg'
-      "
-    />
+    <img :src="data.data.sprites.front_default" />
     <div v-if="error">{{ error }}</div>
   </div>
 </template>
