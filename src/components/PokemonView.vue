@@ -7,19 +7,23 @@ export default defineComponent({
   name: 'PokemonView',
   async setup() {
     const { reqConf } = useRequestData()
-    const { data, error } = await useRequest<PokemonData>(reqConf)
+    const { data, error, isValidating } = await useRequest<PokemonData>(reqConf)
 
     return {
       data,
       error,
+      isValidating,
     }
   },
 })
 </script>
 
 <template>
-  <div>
-    <img :src="data.data.sprites.front_default" />
-    <div v-if="error">{{ error }}</div>
+  <div v-if="!isValidating">
+    <img :src="data.data.sprites.front_default" width="360" height="360" />
+    <div v-if="error">{{ error.message }}</div>
+  </div>
+  <div v-else>
+    <img src="../assets/hqdefault.jpg" />
   </div>
 </template>

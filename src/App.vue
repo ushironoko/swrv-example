@@ -25,7 +25,7 @@ export default defineComponent({
         <PokemonView />
       </template>
       <template #fallback>
-        <img src="./assets/hqdefault.jpg" />
+        Loading...
       </template>
     </Suspense>
     <button @click="prevPokemon">prev</button>
