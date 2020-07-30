@@ -1,7 +1,7 @@
 export type PokemonData = {
-  data: {
-    sprites: {
-      front_default: string
-    }
-  }
+  sprites: Sprites
+}
+
+export type Sprites = {
+  [key: string]: string
 }

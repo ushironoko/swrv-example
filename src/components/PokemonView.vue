@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed, ref } from 'vue'
 import { useRequest, useRequestData } from '../composables/fetch'
 import { PokemonData } from '../composables/pokedex'
 
@@ -8,22 +8,39 @@ export default defineComponent({
   setup() {
     const { reqConf } = useRequestData()
     const { data, error, isValidating } = useRequest<PokemonData>(reqConf)
+    const isShiny = ref(false)
+    const resolvePath = computed(() =>
+      isShiny.value ? 'front_shiny' : 'front_default',
+    )
+    const imgPath = computed(() => {
+      return data?.value?.data?.sprites[resolvePath.value] || ''
+    })
+
+    function changeShiny() {
+      isShiny.value = !isShiny.value
+    }
 
     return {
       data,
       error,
       isValidating,
+      imgPath,
+      changeShiny,
     }
   },
 })
 </script>
 
 <template>
-  <div v-if="!isValidating">
-    <img :src="data.data.sprites.front_default" width="360" height="360" />
-    <div v-if="error">{{ error.message }}</div>
-  </div>
-  <div v-else>
-    <img src="../assets/hqdefault.jpg" />
+  <div>
+    <div v-if="!isValidating">
+      <img :src="imgPath" width="360" height="360" />
+      <div v-if="error">{{ error.message }}</div>
+    </div>
+    <div v-else>
+      <img src="../assets/hqdefault.jpg" />
+    </div>
+    <input id="shiny" type="checkbox" @change="changeShiny" />
+    <label for="shiny">shiny</label>
   </div>
 </template>
